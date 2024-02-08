@@ -8,6 +8,9 @@ from typing import List
 import logging
 
 
+PII_FIELDS = ("name", "email", "phone", "password", "ssn")
+
+
 def filter_datum(fields: List[str], redaction: str, message: str,
                  separator: str) -> str:
     """ A function that returns the log message obfuscated """
@@ -34,3 +37,18 @@ class RedactingFormatter(logging.Formatter):
         """Filter values in incoming log records using filter_datum"""
         return filter_datum(self.fields, self.REDACTION,
                             super().format(record), self.SEPARATOR)
+
+def get_logger() -> logging.Logger:
+    """Returns a logging.Logger object."""
+    logger = logging.getLogger("user_data")
+    logger.setLevel(logging.INFO)
+
+    # Create a StreamHandler with RedactingFormatter 
+    handler = logging.StreamHandler()
+    handler.setFormatter(RedactingFormatter(PII_FIELDS))
+    logger.addHandler(handler)
+
+    # Disable propagation to other loggers
+    logger.propagate = False
+
+    return logger
