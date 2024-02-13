@@ -61,7 +61,7 @@ class BasicAuth(Auth):
             return None
         if user_pwd is None or not isinstance(user_pwd, str):
             return None
-        users = User.search({"email": user_email}, {"pwd": user_pwd})
+        users = User.search({"email": user_email})
         if not users or len(users) == 0:
             return None
         user = users[0]
@@ -74,7 +74,7 @@ class BasicAuth(Auth):
         if request is None:
             return None
         a_header = self.authorization_header(request)
-        if auth_header is None:
+        if a_header is None:
             return None
         base64_header = self.extract_base64_authorization_header(a_header)
         if base64_header is None:
