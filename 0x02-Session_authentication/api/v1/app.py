@@ -18,15 +18,15 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 auth = None
 
 # Load authentication instance based on AUTH_TYPE environment variable
-if os.getenv('AUTH_TYPE') == 'basic_auth':
+if os.getenv('AUTH_TYPE') == 'auth':
+    from api.v1.auth.auth import Auth
+    auth = Auth()
+elif os.getenv('AUTH_TYPE') == 'basic_auth':
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
 elif os.getenv('AUTH_TYPE') == 'session_auth':
     from api.v1.auth.session_auth import SessionAuth
     auth = SessionAuth()
-else:
-    from api.v1.auth.auth import Auth
-    auth = Auth()
 
 
 @app.errorhandler(404)
@@ -53,9 +53,8 @@ def before_request():
     """handle request validation"""
     if auth is None:
         return
-    excluded_paths = ['/api/v1/status/',
-                      '/api/v1/unauthorized/', '/api/v1/forbidden/'
-                      '/api/v1/auth_session/login/']
+    excluded_paths = ['/api/v1/status/', '/api/v1/unauthorized/',
+                      '/api/v1/forbidden/', '/api/v1/auth_session/login/']
     if request.path in excluded_paths:
         return
     if not auth.require_auth(request.path, excluded_paths):
@@ -63,9 +62,9 @@ def before_request():
     if auth.authorization_header(request) is None and \
             auth.session_cookie(request) is None:
         abort(401)
-    request.current_user = auth.current_user(request)
     if auth.current_user(request) is None:
         abort(403)
+    request.current_user = auth.current_user(request)
 
 
 if __name__ == "__main__":
