@@ -37,10 +37,15 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 Ensure you have bcrypt installed:
 ```bash
 pip3 install bcrypt
+```
 
 ## Usage
 - Clone the repository:
 ```bash
-git clone 
-cd user-authentication-service
-
+git clone https://github.com/kelechi-aims/alx-backend-user-data/tree/main/0x03-user_authentication_service 
+cd 0x03-user_authentication_service
+```
+- Install dependencies:
+```bash
+pip install -r requirements.txt
+```
