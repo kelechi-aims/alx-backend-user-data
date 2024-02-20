@@ -100,9 +100,8 @@ class Auth:
         Returns:
             User: The corresponding user if found, otherwise None.
         """
-        if session_id is None:
+        if not session_id:
             return None
-        try:
-            return self._db.find_user_by(session_id=session_id)
-        except NoResultFound:
-            return None
+
+        user = self._db.find_user_by(session_id=session_id)
+        return user if user else None
