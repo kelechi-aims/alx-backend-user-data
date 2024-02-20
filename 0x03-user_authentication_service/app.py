@@ -6,7 +6,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
-@app.route('/', method=['GET'], strict_slashes=False)
+@app.route('/', methods=['GET'], strict_slashes=False)
 def welcome() -> str:
     """Handler for the root route"""
     return jsonify({"message": "Bienvenue"}), 200
