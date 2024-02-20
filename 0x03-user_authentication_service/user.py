@@ -7,6 +7,7 @@ from sqlalchemy import Column, Integer, String
 # Create a base class for declarative class definitions
 Base = declarative_base()
 
+
 class User(Base):
     """
     SQLAlchemy model for the 'users' table
