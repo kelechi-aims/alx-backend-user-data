@@ -91,7 +91,7 @@ class Auth:
         except NoResultFound:
             return None
 
-    def get_user_from_session_id(self, session_id: str) - User:
+    def get_user_from_session_id(self, session_id: str) -> User:
         """Retrieve the user corresponding to the given session ID.
 
         Args:
