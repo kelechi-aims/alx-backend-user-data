@@ -6,8 +6,8 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
-@route('/', method='GET', strict_slashes=False)
-def welcome():
+@route('/', method=['GET'], strict_slashes=False)
+def welcome() -> str:
     """Handler for the root route"""
     return jsonify({"message": "Bienvenue"}), 200
 
