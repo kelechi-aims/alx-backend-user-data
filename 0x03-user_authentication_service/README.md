@@ -9,6 +9,7 @@ This project implements a user authentication service using Flask, a micro web f
 - [Resources](https://intranet.alxswe.com/rltoken/lKExyvivrrW4eh0eI8UV6A)
 - [Requests module](https://intranet.alxswe.com/rltoken/py7LuuD1u2MUwcaf8wnDzQ)
 - [https://intranet.alxswe.com/rltoken/cj-mc5ZHp_KyXn1yikHC0A](https://intranet.alxswe.com/rltoken/cj-mc5ZHp_KyXn1yikHC0A)
+- [mapping declaration ](https://intranet.alxswe.com/rltoken/-a69l-rGqoFdXnnu6qfKdA)
 
 ## Learning Objectives
 At the end of this project, you are expected to be able to [explain to anyone](https://intranet.alxswe.com/rltoken/oAqmZmipBdjCcfI5QqyFXA), **without the help of Google**:
